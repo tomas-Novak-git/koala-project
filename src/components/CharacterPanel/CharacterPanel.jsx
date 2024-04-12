@@ -27,7 +27,7 @@ const CharacterPanel = () => {
   return (
       <div>
           {data.map((item, index) => (
-            <><ul key={index + item.data.ID} className={`${styles.characterCard}`} onClick={() => handleOpen(index)}>
+            <div key={index + item.data.ID}><ul className={`${styles.characterCard}`} onClick={() => handleOpen(index)}>
                {item.children && item.children.has_nemesis && item.children.has_nemesis.records.length > 0 ? (
                 <FaArrowRight /> ) : <li>{''}</li>}
                <li>{item.data.ID}</li>
@@ -43,7 +43,7 @@ const CharacterPanel = () => {
                <ImCross size={24} fill='red'onClick={() => handleDeleteData(item.data.ID)}/>
             </ul>
             {isOpen === index && item.children && item.children.has_nemesis && <NemesisPanel nemesis={item} key={'sub-item' + item.data.ID}/>}
-            </>
+            </div>
             ))}
       </div>
   )

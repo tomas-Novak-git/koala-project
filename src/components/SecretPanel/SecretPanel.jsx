@@ -5,12 +5,12 @@ import { ImCross } from 'react-icons/im';
 import styles from './SecretPanel.module.css'
 
 const SecretPanel = ({secret}) => {
-    const [secretData, setSecretData] = React.useState(secret.children.has_nemesis.records.children.has_secrete.records)
+  const [secretData, setSecretData] = React.useState(secret.records);
 
     const handleDeleteData = (id) => {
-    const index = secret.findIndex(item => item.data.ID === id);
+    const index = secretData.findIndex(item => item.data.ID === id);
     if (index !== -1) {
-      const newData = [...secret];
+      const newData = [...secretData];
       newData.splice(index, 1);
       setSecretData(newData);
     }
@@ -24,9 +24,8 @@ const SecretPanel = ({secret}) => {
             <ul key={secretData.data.ID} className={`${styles.secretCard}`}>
               <li>{''}</li>
               <li>{secretData.data.ID}</li>
-              <li>{secretData.data['Character ID']}</li>
-              <li>{secretData.data['Is alive?']}</li>
-              <li>{secretData.data.Years}</li>
+              <li>{secretData.data['Nemesis ID']}</li>
+              <li>{secretData.data['Secrete Code']}</li>
               <ImCross size={24} fill='red' onClick={() => handleDeleteData(secretData.data.ID)} />
             </ul>
           </>
