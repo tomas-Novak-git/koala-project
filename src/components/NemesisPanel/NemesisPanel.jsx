@@ -3,11 +3,15 @@ import HeadBar from '../HeadBar/HeadBar';
 import { menuTwo } from '../utils/menu-cards';
 import styles from '../NemesisPanel/NemesisPanel.module.css';
 import { ImCross } from 'react-icons/im';
-
-
+import SecretPanel from '../SecretPanel/SecretPanel';
 
 const NemesisPanel = ({ nemesis }) => {
   const [nemesisData, setNemesisData] = React.useState(nemesis.children.has_nemesis.records)
+  const [isOpen, setIsOpen] = React.useState(null);
+
+  const handleOpen = (i) => {
+    setIsOpen((prevIndex) => (prevIndex === i ? null : i));
+  };
 
     const handleDeleteData = (id) => {
     const index = nemesisData.findIndex(item => item.data.ID === id);
@@ -18,18 +22,21 @@ const NemesisPanel = ({ nemesis }) => {
     }
   };
 
+
   return (
     <>
-      {nemesisData.map((nemesisData) => (
-      <><HeadBar menu={menuTwo} />
-            <ul key={nemesisData.data.ID} className={`${styles.nemesisCard}`}>
+      {nemesisData.length > 0 && <HeadBar menu={menuTwo} />}
+      {nemesisData.map((nemesisData, index) => (
+        <>
+            <ul key={nemesisData.data.ID} className={`${styles.nemesisCard}`} onClick={() => handleOpen(index)}>
               <li>{''}</li>
               <li>{nemesisData.data.ID}</li>
               <li>{nemesisData.data['Character ID']}</li>
               <li>{nemesisData.data['Is alive?']}</li>
               <li>{nemesisData.data.Years}</li>
               <ImCross size={24} fill='red' onClick={() => handleDeleteData(nemesisData.data.ID)} />
-          </ul>
+            </ul>
+          {isOpen === index && nemesisData.children && nemesisData.children.has_nemesis && <SecretPanel secret={nemesisData}/>}
           </>
       ))}
     </>

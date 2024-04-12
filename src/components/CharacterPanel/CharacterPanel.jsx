@@ -10,7 +10,7 @@ const CharacterPanel = () => {
   const jsonData = React.useContext(DataContext)
   const [data, setData] = React.useState(jsonData);
   const [isOpen, setIsOpen] = React.useState(null);
-  
+
    const handleDeleteData = (id) => {
     const index = data.findIndex(item => item.data.ID === id);
     if (index !== -1) {
