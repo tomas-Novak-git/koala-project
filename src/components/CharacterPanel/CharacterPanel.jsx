@@ -20,19 +20,16 @@ const CharacterPanel = () => {
     }
   };
 
-const handleOpen = (i) => {
-  if (isOpen == i) {
-    return setIsOpen(null)
-  } 
-  setIsOpen(i)
-}
+  const handleOpen = (i) => {
+    setIsOpen((prevIndex) => (prevIndex === i ? null : i));
+  };
 
   return (
       <div>
           {data.map((item, index) => (
             <><ul key={index + item.data.ID} className={`${styles.characterCard}`} onClick={() => handleOpen(index)}>
                {item.children && item.children.has_nemesis && item.children.has_nemesis.records.length > 0 ? (
-                    <FaArrowRight /> ) : <li>{''}</li>}
+                <FaArrowRight /> ) : <li>{''}</li>}
                <li>{item.data.ID}</li>
                <li>{item.data.Name}</li>
                <li>{item.data.Gender}</li>
@@ -45,7 +42,7 @@ const handleOpen = (i) => {
                <li>{item.data["Knows the answer?"]}</li>
                <ImCross size={24} fill='red'onClick={() => handleDeleteData(item.data.ID)}/>
             </ul>
-            {item.children && item.children.has_nemesis && <NemesisPanel nemesis={item} key={index+ 1}/>}
+            {isOpen === index && item.children && item.children.has_nemesis && <NemesisPanel nemesis={item} key={'sub-item' + item.data.ID}/>}
             </>
             ))}
       </div>
