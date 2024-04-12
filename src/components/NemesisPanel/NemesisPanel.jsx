@@ -5,7 +5,7 @@ import styles from '../NemesisPanel/NemesisPanel.module.css';
 import { ImCross } from 'react-icons/im';
 
 const NemesisPanel = ({ nemesis }) => {
-  const [nemesisData, setNemesisData] = React.useState(nemesis.children.has_nemesis)
+  const [nemesisData, setNemesisData] = React.useState(nemesis.children.has_nemesis.records)
 
     const handleDeleteData = (id) => {
     const index = nemesisData.findIndex(item => item.data.ID === id);
@@ -16,18 +16,17 @@ const NemesisPanel = ({ nemesis }) => {
     }
   };
 
-    console.log(nemesisData)
   return (
     <>
-      <HeadBar menu={menuTwo} />
       {nemesisData.map((nemesisData, index) => (
-        <ul key={index + nemesisData.ID} className={`${styles.nemesisCard}`}>
-          <li>{nemesisData.ID}</li>
-          <li>{nemesisData['Character ID']}</li>
-          <li>{nemesisData['Is alive?']}</li>
-          <li>{nemesisData.Years}</li>
-          <ImCross size={24} fill='red'onClick={() => handleDeleteData(nemesisData.data.ID)}/>
-        </ul>
+      <><HeadBar menu={menuTwo} /><ul key={index} className={`${styles.nemesisCard}`}>
+              <li>{''}</li>
+              <li>{nemesisData.data.ID}</li>
+              <li>{nemesisData.data['Character ID']}</li>
+              <li>{nemesisData.data['Is alive?']}</li>
+              <li>{nemesisData.data.Years}</li>
+              <ImCross size={24} fill='red' onClick={() => handleDeleteData(nemesisData.data.ID)} />
+          </ul></>
       ))}
     </>
   );

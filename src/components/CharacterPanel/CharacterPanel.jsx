@@ -45,7 +45,7 @@ const handleOpen = (i) => {
                <li>{item.data["Knows the answer?"]}</li>
                <ImCross size={24} fill='red'onClick={() => handleDeleteData(item.data.ID)}/>
             </ul>
-            {item.children && item.children.has_nemesis && <NemesisPanel nemesis={item} key={index}/>}
+            {item.children && item.children.has_nemesis && <NemesisPanel nemesis={item} key={index+ 1}/>}
             </>
             ))}
       </div>
