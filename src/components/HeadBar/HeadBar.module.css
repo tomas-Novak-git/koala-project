@@ -1,0 +1,15 @@
+.headBar {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 0 auto;
+    padding: 0.2rem 1rem;
+    list-style-type: none;
+    background-color: rgb(69 217 177);
+}
+.headBar li:first-child{
+    visibility: hidden;
+}
+.headBar li {
+    align-self: center;
+    justify-self: center;
+}

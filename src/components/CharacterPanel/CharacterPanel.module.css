@@ -1,0 +1,42 @@
+.characterCard {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 8px;
+    list-style-type: none;
+    align-items: center;
+    padding: 0.2rem 1rem;
+    border-bottom: 1px solid rgba(255, 250, 255, 1);
+    color: white;
+    font-size: 0.9rem;
+    width: 100%;
+    background-color: rgb(44, 44, 44);
+}
+.pinkText {
+    color: pink;
+}
+li {
+    max-width: 10ch;
+    text-align: center;
+    text-wrap: wrap;
+}
+
+.characterCard li {
+    align-items: center;
+    justify-self: center;
+}
+
+.rotated {
+    transform: rotate(90deg);
+}
+
+svg {
+    margin: 0 auto;
+}
+
+svg:last-of-type:hover {
+    cursor: pointer;
+}
+
+.submenu {
+    background-color: inherit;
+}
