@@ -1,3 +1,4 @@
+
 .characterCard {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -9,10 +10,12 @@
     color: white;
     font-size: 0.9rem;
     width: 100%;
+    cursor: pointer;
     background-color: rgb(44, 44, 44);
 }
-.pinkText {
-    color: pink;
+
+.rotated {
+    transform: rotate(90deg);
 }
 li {
     max-width: 10ch;
