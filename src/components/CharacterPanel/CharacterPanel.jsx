@@ -4,21 +4,18 @@ import { FaArrowRight } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 import NemesisPanel from '../NemesisPanel/NemesisPanel';
 
-import { DataContext } from '../MainAccordion/MainAccordion';
 
-const CharacterPanel = () => {
-  const jsonData = React.useContext(DataContext)
+const CharacterPanel = ({jsonData}) => {
   const [data, setData] = React.useState(jsonData);
   const [isOpen, setIsOpen] = React.useState(null);
 
-   const handleDeleteData = (id) => {
-    const index = data.findIndex(item => item.data.ID === id);
-    if (index !== -1) {
-      const newData = [...data];
-      newData.splice(index, 1);
-      setData(newData);
-    }
-  };
+  const handleDeleteData = (id) => {
+  const index = data.findIndex(item => item.data.ID === id);
+  if (index !== -1) {
+    const newData = [...data];
+    newData.splice(index, 1);
+    setData(newData);
+  }};
 
   const handleOpen = (i) => {
     setIsOpen((prevIndex) => (prevIndex === i ? null : i));
@@ -42,7 +39,7 @@ const CharacterPanel = () => {
                <li>{item.data["Knows the answer?"]}</li>
                <ImCross size={24} fill='red'onClick={() => handleDeleteData(item.data.ID)}/>
             </ul>
-            {isOpen === index && item.children && item.children.has_nemesis && <NemesisPanel nemesis={item} key={'sub-item' + item.data.ID}/>}
+            {isOpen === index && item.children && item.children.has_nemesis && <NemesisPanel nemesis={item.children.has_nemesis.records} key={'sub-item' + item.data.ID}/>}
             </div>
             ))}
       </div>

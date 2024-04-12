@@ -6,28 +6,26 @@ import { ImCross } from 'react-icons/im';
 import SecretPanel from '../SecretPanel/SecretPanel';
 
 const NemesisPanel = ({ nemesis }) => {
-  const [nemesisData, setNemesisData] = React.useState(nemesis.children.has_nemesis.records)
+  const [nemesisData, setNemesisData] = React.useState(nemesis)
   const [isOpen, setIsOpen] = React.useState(null);
 
   const handleOpen = (i) => {
     setIsOpen((prevIndex) => (prevIndex === i ? null : i));
   };
 
-    const handleDeleteData = (id) => {
-    const index = nemesisData.findIndex(item => item.data.ID === id);
-    if (index !== -1) {
-      const newData = [...nemesisData];
-      newData.splice(index, 1);
-      setNemesisData(newData);
-    }
-  };
+  const handleDeleteData = (id) => {
+  const index = nemesisData.findIndex(item => item.data.ID === id);
+  if (index !== -1) {
+    const newData = [...nemesisData];
+    newData.splice(index, 1);
+    setNemesisData(newData);
+  }};
 
 
   return (
     <>
       {nemesisData.length > 0 && <HeadBar menu={menuTwo} />}
       {nemesisData.map((nemesisData, index) => (
-
             <div key={nemesisData.data.ID}>
               <ul  className={`${styles.nemesisCard}`} onClick={() => handleOpen(index)}>
                 <li>{''}</li>
@@ -39,7 +37,6 @@ const NemesisPanel = ({ nemesis }) => {
               </ul>
                 {isOpen === index && nemesisData.children && nemesisData.children.has_secrete && <SecretPanel secret={nemesisData.children.has_secrete}/>}
             </div>
-          
       ))}
     </>
   );

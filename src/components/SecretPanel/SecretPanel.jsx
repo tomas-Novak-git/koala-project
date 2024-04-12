@@ -17,20 +17,20 @@ const SecretPanel = ({secret}) => {
   };
 
   return (
-    <>
+    <div>
       {secretData.length > 0 && <HeadBar menu={menuThree} />}
       {secretData.map((secretData) => (
-        <>
-            <ul key={secretData.data.ID} className={`${styles.secretCard}`}>
+        <div key={secretData.data.ID}>
+            <ul  className={`${styles.secretCard}`}>
               <li>{''}</li>
               <li>{secretData.data.ID}</li>
               <li>{secretData.data['Nemesis ID']}</li>
               <li>{secretData.data['Secrete Code']}</li>
               <ImCross size={24} fill='red' onClick={() => handleDeleteData(secretData.data.ID)} />
             </ul>
-          </>
+          </div>
       ))}
-    </>
+    </div>
   )
 }
 
